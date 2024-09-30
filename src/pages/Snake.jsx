@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
- 
+import { Button } from 'react-bootstrap';
+
 const box = 20;  
 const canvasSize = 400;  
 
@@ -25,8 +26,8 @@ function Snake() {
     }, [direction]);
 
     useEffect(() => {
-        gameInterval.current = setInterval(draw, 100); // Assign interval ID to ref
-        return () => clearInterval(gameInterval.current); // Clear the interval on unmount
+        gameInterval.current = setInterval(draw, 100); 
+        return () => clearInterval(gameInterval.current); 
     }, [snake, direction]);
 
     const draw = () => {
@@ -60,7 +61,6 @@ function Snake() {
 
         const newHead = { x: snakeX, y: snakeY };
 
-        
         if (snakeX < 0 || snakeY < 0 || snakeX >= canvasSize || snakeY >= canvasSize || collision(newHead, snake)) {
             clearInterval(gameInterval.current);  
             alert('Game over!');
@@ -87,12 +87,44 @@ function Snake() {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1>Snake Game</h1>
-            <canvas id="gameCanvas" width={canvasSize} height={canvasSize} style={{ border: '1px solid black', display: 'block', margin: '0 auto' }} />
-            <p>Score: {score}</p>
+        <div style={styles.container}>
+            <h1 style={styles.title}>Snake Game</h1>
+            <canvas id="gameCanvas" width={canvasSize} height={canvasSize} style={styles.canvas} />
+            <p style={styles.score}>Score: {score}</p>
+            <Button onClick={resetGame} variant="primary" style={styles.button}>Restart Game</Button>
         </div>
     );
 }
+
+const styles = {
+    container: {
+        textAlign: 'center',
+        marginTop: '50px',
+        backgroundColor: '#f0f0f0',
+        padding: '20px',
+        borderRadius: '10px',
+        width: '450px',
+        margin: 'auto',
+        boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
+    },
+    title: {
+        color: '#333',
+        marginBottom: '20px',
+    },
+    canvas: {
+        border: '2px solid black',
+        display: 'block',
+        margin: '0 auto',
+        backgroundColor: '#fafafa',
+    },
+    score: {
+        fontSize: '20px',
+        color: '#555',
+        margin: '20px 0',
+    },
+    button: {
+        marginTop: '20px',
+    },
+};
 
 export default Snake;

@@ -1,20 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 function Home() {
   return (
-    <div className="Home">
-      <h1>Welcome to the Game Hub</h1>
-      <p>Select a game to play:</p>
-      <nav>
-        <ul>
-          <li><Link to="/rock-paper-scissors">Rock, Paper, Scissors</Link></li>
-          <li><Link to="/guess-the-number">Guess the Number</Link></li>
-          <li><Link to="/snake">Snake </Link></li>
-          <li><Link to="/tictactoe">Tic Tac Toe</Link></li> 
-        </ul>
-      </nav>
-    </div>
+    <Container className="Home text-center mt-5">
+      <h1 className="mb-4">Welcome to the Corn Hub</h1>
+      <p className="lead">Select a game to play:</p>
+      <Row className="justify-content-center">
+        <Col md={3} className="mb-4">
+          <Card>
+            <Card.Body>
+              <Card.Title>Rock, Paper, Scissors</Card.Title>
+              <Link to="/rock-paper-scissors">
+                <Button variant="primary">Play</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={3} className="mb-4">
+          <Card>
+            <Card.Body>
+              <Card.Title>Guess the Number</Card.Title>
+              <Link to="/guess-the-number">
+                <Button variant="success">Play</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={3} className="mb-4">
+          <Card>
+            <Card.Body>
+              <Card.Title>Snake</Card.Title>
+              <Link to="/snake">
+                <Button variant="warning">Play</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={3} className="mb-4">
+          <Card>
+            <Card.Body>
+              <Card.Title>Tic Tac Toe</Card.Title>
+              <Link to="/tictactoe">
+                <Button variant="danger">Play</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
